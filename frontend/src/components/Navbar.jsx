@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { lazy, useState } from "react";
 
 // React Router
-import { Outlet, NavLink, Link } from "react-router";
+import { Outlet, NavLink, Link, useLocation } from "react-router";
 
 // Components
 import UserDropdown from "./UserDropdown";
 import CartDropdown from "./CartDropdown";
 import MobileSidebar from "./MobileSidebar";
-
+const Footer = lazy(() => import("./Footer"));
 // custom hooks
 import { useCart } from "../custom_hooks/useCart";
 
@@ -26,7 +26,13 @@ const navLinks = [
   { title: "CONTACT", route: "/contact" },
 ];
 
+// Hide footer routes
+const HIDE_FOOTER_ROUTES = ["/login", "/checkout"];
+
 const Navbar = React.memo(() => {
+  const location = useLocation();
+  const shouldHideFooter = HIDE_FOOTER_ROUTES.includes(location.pathname);
+
   // local state for user dropdown menu
   const [dropdown, setDropdown] = useState(false);
 
@@ -121,6 +127,7 @@ const Navbar = React.memo(() => {
         </div>
       </div>
       <Outlet />
+      {!shouldHideFooter && <Footer />}
     </>
   );
 });

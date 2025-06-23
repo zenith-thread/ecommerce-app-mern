@@ -21,7 +21,7 @@ const CartDropdown = () => {
     >
       <div className="flex flex-col gap-2 w-[20rem] min-h-[30rem] h-[30rem] overflow-y-scroll py-3 px-2 bg-slate-50 text-gray-500 rounded shadow-md">
         <Link to="/checkout">
-          <Button>Checkout</Button>
+          <Button classname="btn">Checkout</Button>
         </Link>
       </div>
     </div>

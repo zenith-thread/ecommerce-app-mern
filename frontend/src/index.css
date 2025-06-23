@@ -13,3 +13,12 @@ a.active hr {
 :root {
   font-family: Outfit, serif;
 }
+
+@layer utilities {
+  .btn {
+    @apply w-[10rem] min-w-[10rem] bg-black text-white font-medium text-lg px-4 py-2 rounded cursor-pointer border-transparent;
+  }
+  .btn:hover {
+    @apply bg-white text-black border-1 border-black transition-all;
+  }
+}

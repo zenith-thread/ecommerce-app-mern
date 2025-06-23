@@ -1,7 +1,10 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 
 // React Router
 import { Routes, Route } from "react-router";
+
+// Custom hooks
+import { useShop } from "./custom_hooks/useShop";
 
 // PAGES
 import Loading from "./pages/Loading";
@@ -19,6 +22,14 @@ const Orders = lazy(() => import("./pages/Orders"));
 const PageNotFound = lazy(() => import("./pages/PageNotFound"));
 
 const App = () => {
+  // custom hook
+  const { setShopProducts } = useShop();
+
+  // set the products to the shop reducer
+  useEffect(() => {
+    setShopProducts();
+  }, []);
+
   return (
     <Suspense fallback={<Loading />}>
       <Routes>

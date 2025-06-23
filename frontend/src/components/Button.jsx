@@ -1,6 +1,6 @@
-const Button = ({ children }) => {
+const Button = ({ type, classname, children }) => {
   return (
-    <button className="w-[10rem] min-w-[10rem] bg-black text-white font-medium text-lg px-4 py-2 rounded cursor-pointer">
+    <button type={type || "button"} className={classname}>
       {children}
     </button>
   );

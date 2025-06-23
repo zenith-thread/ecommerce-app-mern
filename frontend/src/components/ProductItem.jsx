@@ -6,11 +6,8 @@ import { Link } from "react-router";
 // Custom Hook
 import { useShop } from "../custom_hooks/useShop";
 
-const ProductItem = React.memo(({ product }) => {
+const ProductItem = React.memo(({ product, shopCurreny }) => {
   const { _id, image, name, price } = product;
-
-  //   custom hook
-  const { shopCurreny } = useShop();
 
   return (
     <Link to={`/product/${_id}`} className="text-gray-700 cursor-pointer">

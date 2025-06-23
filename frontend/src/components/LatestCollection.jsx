@@ -4,23 +4,14 @@ import React, { lazy, useEffect, useState } from "react";
 const Title = lazy(() => import("./Title"));
 const ProductItem = lazy(() => import("./ProductItem"));
 
-// custom hooks
-import { useShop } from "../custom_hooks/useShop";
-
-const LatestCollection = React.memo(() => {
+const LatestCollection = React.memo(({ shopProducts, shopCurreny }) => {
   const [latestProducts, setLatestProducts] = useState([]);
-  // custom hook
-  const { shopProducts, setShopProducts } = useShop();
-
-  // set the products to the shop reducer
-  useEffect(() => {
-    setShopProducts();
-  }, []);
 
   // get ten Latest Products
   useEffect(() => {
     shopProducts.length > 0 && setLatestProducts(shopProducts.slice(0, 10));
   }, [shopProducts]);
+
   return (
     <div className="my-20">
       {/* Title  */}
@@ -36,7 +27,11 @@ const LatestCollection = React.memo(() => {
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6">
         {shopProducts.length > 0 &&
           latestProducts.map((product) => (
-            <ProductItem key={product._id} product={product} />
+            <ProductItem
+              key={product._id}
+              product={product}
+              shopCurreny={shopCurreny}
+            />
           ))}
       </div>
     </div>
