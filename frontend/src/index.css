@@ -14,11 +14,15 @@ a.active hr {
   font-family: Outfit, serif;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 @layer utilities {
   .btn {
-    @apply w-[10rem] min-w-[10rem] bg-black text-white font-medium text-lg px-4 py-2 rounded cursor-pointer border-transparent;
+    @apply w-[10rem] min-w-[10rem] bg-black text-white font-medium text-base px-4 py-3 rounded cursor-pointer border-transparent;
   }
-  .btn:hover {
+  .btn:active {
     @apply bg-white text-black border-1 border-black transition-all;
   }
 }

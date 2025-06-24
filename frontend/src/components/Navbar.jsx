@@ -47,12 +47,12 @@ const Navbar = React.memo(() => {
   };
 
   // redux for cart dropdown
-  const { isOpen, setIsOpen } = useCart();
+  const { setIsOpen, cartCount } = useCart();
 
   const toggleCartDrowndown = (e) => {
     e.preventDefault();
 
-    setIsOpen(!isOpen);
+    setIsOpen();
   };
 
   // mobile menu
@@ -120,7 +120,7 @@ const Navbar = React.memo(() => {
               <img src={cart_icon} alt="cart icon" className="w-5 min-w-5" />
             </Link>
             <p className="absolute right-[-7px] bottom-[-8px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[10px]">
-              12
+              {cartCount}
             </p>
             <CartDropdown />
           </div>
