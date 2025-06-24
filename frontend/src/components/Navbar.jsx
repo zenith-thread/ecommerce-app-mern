@@ -7,9 +7,11 @@ import { Outlet, NavLink, Link, useLocation } from "react-router";
 import UserDropdown from "./UserDropdown";
 import CartDropdown from "./CartDropdown";
 import MobileSidebar from "./MobileSidebar";
+import SearchBar from "./SearchBar";
 const Footer = lazy(() => import("./Footer"));
 // custom hooks
 import { useCart } from "../custom_hooks/useCart";
+import { useShop } from "../custom_hooks/useShop";
 
 // assets
 import { assets } from "../assets/frontend_assets/assets";
@@ -29,9 +31,13 @@ const navLinks = [
 // Hide footer routes
 const HIDE_FOOTER_ROUTES = ["/login", "/checkout"];
 
+// Show Searchbar route
+const SHOW_SEARCHBAR_ROUTES = ["/collection"];
+
 const Navbar = React.memo(() => {
   const location = useLocation();
   const shouldHideFooter = HIDE_FOOTER_ROUTES.includes(location.pathname);
+  const shouldShowSearchbar = SHOW_SEARCHBAR_ROUTES.includes(location.pathname);
 
   // local state for user dropdown menu
   const [dropdown, setDropdown] = useState(false);
@@ -58,6 +64,13 @@ const Navbar = React.memo(() => {
 
   const toggleMenuClose = () => {
     setVisible(false);
+  };
+
+  // Search Bar
+  const { setShopSearchBar } = useShop();
+
+  const openSearchBar = () => {
+    setShopSearchBar(true);
   };
   return (
     <>
@@ -87,6 +100,7 @@ const Navbar = React.memo(() => {
             src={search_icon}
             alt="search icon"
             className="w-5 cursor-pointer"
+            onClick={openSearchBar}
           />
           <div className="relative" onClick={toggleDropdown}>
             <img
@@ -126,6 +140,7 @@ const Navbar = React.memo(() => {
           />
         </div>
       </div>
+      {shouldShowSearchbar && <SearchBar />}
       <Outlet />
       {!shouldHideFooter && <Footer />}
     </>

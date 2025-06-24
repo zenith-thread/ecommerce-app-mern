@@ -16,3 +16,13 @@ export const selectShopDeliveryCharges = createSelector(
   [shopReducer],
   (shop) => shop.deliveryCharges
 );
+
+export const selectSearchField = createSelector(
+  [shopReducer],
+  (shop) => shop.searchField
+);
+
+export const selectSearchBar = createSelector(
+  [shopReducer],
+  (shop) => shop.searchBar
+);
