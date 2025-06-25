@@ -1,7 +1,7 @@
 import React, { lazy, useState } from "react";
 
 // React Router
-import { Outlet, NavLink, Link, useLocation } from "react-router";
+import { Outlet, NavLink, Link, useLocation, useNavigate } from "react-router";
 
 // Components
 import UserDropdown from "./UserDropdown";
@@ -12,6 +12,7 @@ const Footer = lazy(() => import("./Footer"));
 // custom hooks
 import { useCart } from "../custom_hooks/useCart";
 import { useShop } from "../custom_hooks/useShop";
+import { useUser } from "../custom_hooks/useUser";
 
 // assets
 import { assets } from "../assets/frontend_assets/assets";
@@ -38,11 +39,19 @@ const Navbar = React.memo(() => {
   const location = useLocation();
   const shouldHideFooter = HIDE_FOOTER_ROUTES.includes(location.pathname);
   const shouldShowSearchbar = SHOW_SEARCHBAR_ROUTES.includes(location.pathname);
+  const navigate = useNavigate();
+  // User Hook
+  const { userIsLoggedIn, userSetIsLoggedIn } = useUser();
 
   // local state for user dropdown menu
   const [dropdown, setDropdown] = useState(false);
 
   const toggleDropdown = () => {
+    if (!userIsLoggedIn) {
+      navigate("/login");
+      userSetIsLoggedIn(true);
+      return;
+    }
     setDropdown(!dropdown);
   };
 
@@ -72,6 +81,7 @@ const Navbar = React.memo(() => {
   const openSearchBar = () => {
     setShopSearchBar(true);
   };
+
   return (
     <>
       <div className="flex items-center justify-between py-5 font-medium px-4 sm:px-[3vw] md:px[5vw] lg:px-[7vw]">
@@ -102,6 +112,7 @@ const Navbar = React.memo(() => {
             className="w-5 cursor-pointer"
             onClick={openSearchBar}
           />
+
           <div className="relative" onClick={toggleDropdown}>
             <img
               src={profile_icon}
@@ -110,6 +121,7 @@ const Navbar = React.memo(() => {
             />
             <UserDropdown display={dropdown} />
           </div>
+
           {/* Cart */}
           <div className="relative">
             <Link
