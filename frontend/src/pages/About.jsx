@@ -40,7 +40,7 @@ const About = React.memo(() => {
           alt="About Us Image"
           className="w-full md:max-w-1/2"
         />
-        <div className="flex flex-col justify-center gap-6 md:w-1/2 text-gray-600">
+        <div className="flex flex-col justify-center gap-6 md:w-1/2 text-gray-600 px-4">
           <p>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit.
             Repudiandae asperiores accusantium repellendus quas vel veniam
@@ -64,7 +64,10 @@ const About = React.memo(() => {
 
         <div className="flex flex-col md:flex-row text-sm mb-20">
           {chooseUsFields.map(({ title, paragraph }, idx) => (
-            <div className="border border-gray-200 px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5">
+            <div
+              key={idx}
+              className="border border-gray-200 px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5"
+            >
               <b>{title}:</b>
               <p className="text-gray-600">{paragraph}</p>
             </div>

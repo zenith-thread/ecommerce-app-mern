@@ -25,4 +25,10 @@ a.active hr {
   .btn:active {
     @apply bg-white text-black border-1 border-black transition-all;
   }
+  .btn-inverted {
+    @apply bg-white text-black border-1 border-black;
+  }
+  .btn-inverted:active {
+    @apply bg-black text-white border-1 border-white transition-all;
+  }
 }

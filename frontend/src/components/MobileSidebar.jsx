@@ -6,7 +6,7 @@ import { NavLink } from "react-router";
 const MobileSidebar = React.memo(({ visible, icon, navLinks, onClick }) => {
   return (
     <div
-      className={`absolute top-0 right-0 overflow-hidden h-screen bg-slate-200 transition-all shadow-2xl shadow-gray-700 rounded-l-2xl  ${
+      className={`absolute top-0 right-0 overflow-hidden h-screen bg-slate-200 transition-all shadow-2xl shadow-gray-700 rounded-l-2xl z-8 ${
         visible ? "w-[90%]" : "w-0"
       }`}
     >
