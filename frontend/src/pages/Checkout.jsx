@@ -28,8 +28,11 @@ const Checkout = () => {
           <div className="w-full sm:w-[450px]">
             <CartTotal />
             <div className="w-full text-end mt-6">
-              <Button onClick={() => navigate("/place-order")} classname="btn">
-                Place Order
+              <Button
+                onClick={() => navigate("/place-order")}
+                classname="btn !min-w-[200px]"
+              >
+                Prooceed to Payment
               </Button>
             </div>
           </div>
