@@ -9,6 +9,9 @@ import { useCart } from "../custom_hooks/useCart";
 import Button from "../components/Button";
 import RelatedProducts from "../components/RelatedProducts";
 
+// react toastify
+import { toast } from "react-toastify";
+
 // assets
 import { assets } from "../assets/frontend_assets/assets";
 
@@ -17,7 +20,7 @@ const { star_icon, star_dull_icon } = assets;
 const Product = () => {
   const { productId } = useParams();
   const { shopProducts, shopCurreny } = useShop();
-  const { cartItems, addItem } = useCart();
+  const { addItem } = useCart();
 
   const [product, setProduct] = useState(false);
   const [mainImage, setMainImage] = useState(null);
@@ -38,7 +41,20 @@ const Product = () => {
   };
 
   const addItemToCart = (product) => {
-    addItem(product);
+    if (!size) {
+      toast.error("Product Size is not Selected");
+      return;
+    }
+    addItem({
+      _id: product._id,
+      name: product.name,
+      category: product.category,
+      subCategory: product.subCategory,
+      image: product.image[0],
+      size: size,
+      price: product.price,
+    });
+    toast.success("Product Added to Cart!");
   };
 
   useEffect(() => {

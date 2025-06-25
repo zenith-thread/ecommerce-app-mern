@@ -29,7 +29,7 @@ export const useCart = () => {
   const setIsOpen = () => dispatch(setCartIsOpen(!isOpen));
   const addItem = (item) => dispatch(addItemToCart(item));
   const removeItem = (item) => dispatch(removeItemFromCart(item));
-  const clearCartItems = () => dispatch(clearItemFromCart());
+  const clearCartItems = (item) => dispatch(clearItemFromCart(item));
 
   return {
     // Selectors

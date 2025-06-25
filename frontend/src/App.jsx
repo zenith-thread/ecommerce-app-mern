@@ -21,6 +21,8 @@ const PlaceOrder = lazy(() => import("./pages/PlaceOrder"));
 const Orders = lazy(() => import("./pages/Orders"));
 const PageNotFound = lazy(() => import("./pages/PageNotFound"));
 
+import { ToastContainer } from "react-toastify";
+
 const App = () => {
   // custom hook
   const { setShopProducts } = useShop();
@@ -32,6 +34,7 @@ const App = () => {
 
   return (
     <Suspense fallback={<Loading />}>
+      <ToastContainer />
       <Routes>
         <Route path="/" element={<Navbar />}>
           <Route index element={<Home />} />
